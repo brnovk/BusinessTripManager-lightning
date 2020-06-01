@@ -1,0 +1,12 @@
+.THIS .label {
+    font-weight: bold;
+    display: block;
+}
+
+.THIS .card-property {
+    margin-bottom: 3px;
+}
+
+.THIS .slds-card__footer {
+    text-align: inherit;
+}

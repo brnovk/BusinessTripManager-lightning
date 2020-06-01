@@ -1,0 +1,4 @@
+<aura:event type="APPLICATION" description="Business Trip Search Application Event">
+	<aura:attribute name="searchStatuses" type="String[]" required="false" />
+	<aura:attribute name="searchTypes" type="String[]" required="false" />
+</aura:event>

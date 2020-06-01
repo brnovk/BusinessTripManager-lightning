@@ -1,0 +1,119 @@
+<aura:component description="Business Trip Card Component">
+	<aura:attribute type="Business_Trip__c" name="businessTrip" required="true" />
+	<aura:attribute type="Integer" name="countHidedRides" required="false" default="0" />
+
+	<aura:attribute name="strRecId" type="String" />
+	<lightning:overlayLibrary aura:id="overlayLibDemo"/>
+
+	<aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+
+	<lightning:overlayLibrary aura:id="overlayLib"/>
+
+	<!--<lightning:card iconName="utility:tracker" variant="Narrow" title="{!v.businessTrip.Name}">-->
+		<!--<lightning:layout horizontalAlign="spread">-->
+			<!--<lightning:layoutItem flexibility="shrink">-->
+				<!--<div class="slds-p-horizontal&#45;&#45;small">-->
+					<!--<div>-->
+						<!--<span class="label">Employee Name:</span>-->
+						<!--<span>{!v.businessTrip.Employee__r.Name}</span>-->
+					<!--</div>-->
+					<!--<div>-->
+						<!--<span class="label">Target:</span>-->
+						<!--<span>{!v.businessTrip.Target__c}</span>-->
+					<!--</div>-->
+					<!--<aura:if isTrue="{!not(empty(v.businessTrip.Rides__r))}">-->
+						<!--<aura:iteration items="{!v.businessTrip.Rides__r}" var="ride">-->
+							<!--<p>-&#45;&#45;&#45;&#45;</p>-->
+							<!--<div>-->
+								<!--<span class="label">Start Time:</span>-->
+								<!--<span>{!ride.Start_Time__c}</span>-->
+							<!--</div>-->
+							<!--<div>-->
+								<!--<span class="label">End Time:</span>-->
+								<!--<span>{!ride.End_Time__c}</span>-->
+							<!--</div>-->
+							<!--<div>-->
+								<!--<span class="label">Status:</span>-->
+								<!--<span>{!ride.Status__c}</span>-->
+							<!--</div>-->
+							<!--<div>-->
+								<!--<span class="label">Ticket Number:</span>-->
+								<!--<span>{!ride.Ticket_Number__c}</span>-->
+							<!--</div>-->
+							<!--<div>-->
+								<!--<span class="label">Type Of Trip:</span>-->
+								<!--<span>{!ride.Type_Of_Trip__c}</span>-->
+							<!--</div>-->
+						<!--</aura:iteration>-->
+					<!--</aura:if>-->
+					<!--<aura:if isTrue="{!empty(v.businessTrip.Rides__r)}">-->
+						<!--<p>Rides is empty</p>-->
+					<!--</aura:if>-->
+				<!--</div>-->
+			<!--</lightning:layoutItem>-->
+		<!--</lightning:layout>-->
+	<!--</lightning:card>-->
+
+	<lightning:card iconName="utility:tracker" class="slds-m-around_x-small slds-m-bottom_none slds-m-right_none">
+
+		<aura:set attribute="title">{!v.businessTrip.Name}</aura:set>
+
+		<aura:set attribute="actions">
+			<!--<lightning:button label="View" onclick="" />-->
+			<!--<lightning:button label="Edit" onclick="" />-->
+			<lightning:button label="Detail" onclick="{!c.handleShowModal}" />
+			<lightning:buttonMenu alternativeText="Show menu" onselect="{!c.buttonMenuSelectHandler}" >
+				<!--<lightning:menuSubheader label="Header Alpha" />-->
+				<lightning:menuItem value="Edit" label="Edit" />
+				<lightning:menuItem value="Delete" label="Delete" />
+				<!--<lightning:menuSubheader label="Header Beta" />-->
+				<lightning:menuItem value="View in standard page" label="View in standard page" />
+				<lightning:menuItem value="Add ride" label="Add ride" />
+			</lightning:buttonMenu>
+		</aura:set>
+
+		<!-- Card body -->
+		<lightning:layout horizontalAlign="spread">
+			<div class="slds-p-horizontal--medium slds-truncate">
+				<div class="card-property">
+					<p class="label">Employee:</p>
+					<p class="slds-truncate" title="{!v.businessTrip.Employee__r.Name}">
+						<!--suppress BadExpressionStatementJS -->
+						<a href="javascript:void(0)" onclick="{!c.navigateToSObject}"
+						   title="{!v.businessTrip.Employee__r.Name}" data-id="{!v.businessTrip.Employee__r.Id}">
+							{!v.businessTrip.Employee__r.Name}
+						</a>
+					</p>
+				</div>
+				<div class="card-property">
+					<p class="label">Target:</p>
+					<p class="slds-truncate" title="{!v.businessTrip.Target__c}">
+						{!v.businessTrip.Target__c}
+					</p>
+				</div>
+			</div>
+		</lightning:layout>
+
+		<aura:set attribute="footer">
+			<aura:if isTrue="{!not(empty(v.businessTrip.Rides__r))}">
+				<p class="slds-truncate">
+					<lightning:formattedDateTime value="{!v.businessTrip.Rides__r[0].Start_Time__c}"
+						year="numeric" day="2-digit" month="long" hour="2-digit" minute="2-digit"/>
+					-
+					<lightning:formattedDateTime value="{!v.businessTrip.Rides__r[0].End_Time__c}"
+					    year="numeric" day="2-digit" month="long" hour="2-digit" minute="2-digit"/>
+					<aura:if isTrue="{!v.countHidedRides}">
+						<span style="font-weight: bold;">
+							( + {!v.countHidedRides} item<aura:if isTrue="{!v.countHidedRides > 1}">s</aura:if>)
+						</span>
+					</aura:if>
+				</p>
+			</aura:if>
+			<aura:if isTrue="{!empty(v.businessTrip.Rides__r)}">
+				<p>Rides are empty</p>
+			</aura:if>
+		</aura:set>
+
+	</lightning:card>
+
+</aura:component>

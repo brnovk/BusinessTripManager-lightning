@@ -1,0 +1,22 @@
+<aura:component description="Business Trip Cards Grid" controller="BusinessTripCardsController"
+                implements="flexipage:availableForAllPageTypes">
+	<aura:attribute name="businessTrips" type="Business_Trip__c[]" />
+	<aura:attribute name="searchTypes" type="String[]" />
+	<aura:attribute name="searchStatuses" type="String[]" />
+
+	<aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+	<aura:handler event="c:BusinessTripSearchEvent" action="{!c.businessTripSearchEventHandler}"/>
+
+	<aura:if isTrue="{!not(empty(v.businessTrips))}">
+		<div class="slds-grid slds-wrap">
+			<aura:iteration items="{!v.businessTrips}" var="businessTrip">
+				<div class="slds-col slds-size_1-of-1 slds-large-size_4-of-12">
+					<c:BusinessTripCard businessTrip="{!businessTrip}" />
+				</div>
+			</aura:iteration>
+		</div>
+	</aura:if>
+	<aura:if isTrue="{!empty(v.businessTrips)}">
+		<p>List is empty</p>
+	</aura:if>
+</aura:component>

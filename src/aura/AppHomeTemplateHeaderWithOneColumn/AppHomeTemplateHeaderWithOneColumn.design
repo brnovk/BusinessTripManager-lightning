@@ -1,0 +1,16 @@
+<design:component label="Page template with header and one column.">
+	<!--suppress XmlUnboundNsPrefix -->
+	<flexipage:template >
+		<!--suppress XmlUnboundNsPrefix -->
+		<flexipage:region name="header" defaultWidth="Large"/>
+		<!--suppress XmlUnboundNsPrefix -->
+		<flexipage:region name="mainColumn" defaultWidth="Large"/>
+	</flexipage:template>
+	<!--suppress HtmlUnknownTag -->
+	<design:supportedFormFactors>
+		<!--suppress HtmlUnknownTag -->
+		<design:supportedFormFactor type="Small" />
+		<!--suppress HtmlUnknownTag -->
+		<design:supportedFormFactor type="Large" />
+	</design:supportedFormFactors>
+</design:component>

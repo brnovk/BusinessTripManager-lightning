@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg version="1.1" viewBox="0 0 565 153" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>Page template with header and one column.</title>
+	<desc>Page template with header and one column.</desc>
+	<defs>
+		<path id="c" d="m52.919 23.328c1.0531 1.6487 7.4332 2.9429 7.4332 2.9429s1.6838 1.2352-4.5419 1.2352c-4.383-1.2e-6 -17.873-7e-7 -25.475-3e-7 -7.6019-4e-7 -21.092-9e-7 -25.475 3e-7 -6.2257 2.5e-6 -4.5419-1.2352-4.5419-1.2352s6.3801-1.2942 7.4332-2.9429c1.0531-1.6487 2.8854-23.259 2.8854-23.259h39.397s1.8324 21.61 2.8854 23.259z"/>
+		<rect id="a" y=".48418" width="200" height="123.57" rx="3.8554"/>
+	</defs>
+	<g fill="none" fill-rule="evenodd">
+		<g transform="translate(-1 -64)">
+			<g transform="translate(-60 63)">
+				<g transform="translate(249)">
+					<g transform="translate(69.6 124.02)">
+						<mask fill="white">
+							<use xlink:href="#c"/>
+						</mask>
+						<use fill="#D8D8D8" xlink:href="#c"/>
+					</g>
+					<g transform="translate(0 .48418)">
+						<mask id="e" fill="white">
+							<use xlink:href="#a"/>
+						</mask>
+						<use fill="#9B9B9B" fill-opacity=".30016" xlink:href="#a"/>
+						<use fill="#E1E1E1" xlink:href="#a"/>
+						<g fill="#fff" mask="url(#e)">
+							<g transform="translate(6.747 9.1994)">
+								<rect width="186.54" height="104.25"/>
+							</g>
+						</g>
+					</g>
+					<g transform="translate(6.9156 9.3421)">
+						<rect y=".32109" width="186.35" height="20.132" fill="#54698D"/>
+						<rect x="4.8193" y="24.963" width="175.18" height="74.024" fill="#54698D"/>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</svg>

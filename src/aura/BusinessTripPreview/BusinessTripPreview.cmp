@@ -1,0 +1,64 @@
+<aura:component description="Business Trip Preview" controller="BusinessTripPreviewController"
+                implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction">
+	<aura:attribute name="recordId" type="String" />
+	<aura:attribute name="isEditableMode" type="Boolean" required="false" default="false" />
+
+	<aura:attribute name="rides" type="Ride__c[]" default="[]" />
+	<aura:attribute name="saveDraftValues" type="Object" />
+	<aura:attribute name="errors" type="Object" />
+	<aura:attribute name="risesDataTableColumns" type="List" />
+
+	<aura:handler event="force:refreshView" action="{!c.doInit}" />
+
+	<aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+
+	<lightning:overlayLibrary aura:id="overlayLibraryId"/>
+	<lightning:notificationsLibrary aura:id="notificationsLibraryId"/>
+
+	<div class="slds-theme_default">
+		<div class="slds-border_bottom slds-m-bottom_small">
+			<!-- edit mode -->
+			<aura:if isTrue="{!v.isEditableMode}"><!--suppress BadExpressionStatementJS -->
+				<lightning:recordEditForm aura:id="businessTripEditFormId"
+				                          onsubmit="{!c.businessTripEditFormHandleSubmit}"
+				                          onsuccess="{!c.businessTripEditFormHandleSuccess}"
+				                          recordId="{!v.recordId}"
+				                          objectApiName="Business_Trip__c">
+					<lightning:messages />
+					<lightning:inputField fieldName="Name" aura:id="businessTripNameId" />
+					<lightning:inputField fieldName="Employee__c" />
+					<lightning:inputField fieldName="Target__c" />
+					<lightning:button variant="brand" type="submit" name="save" label="Save and close modal"
+					                  class="slds-m-vertical_small slds-m-left_xxx-small" />
+				</lightning:recordEditForm>
+			</aura:if>
+
+			<!-- view mode -->
+			<aura:if isTrue="{!!v.isEditableMode}">
+				<lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Business_Trip__c">
+					<lightning:outputField fieldName="Name" />
+					<lightning:outputField fieldName="Employee__c" />
+					<lightning:outputField fieldName="Target__c" />
+				</lightning:recordViewForm>
+			</aura:if>
+		</div>
+
+		<h1>Rides</h1>
+		<aura:if isTrue="{!not(empty(v.rides))}">
+			<lightning:datatable aura:id="dtTable"
+			                     hideCheckboxColumn="true"
+			                     columns="{!v.risesDataTableColumns}"
+			                     data="{!v.rides}"
+			                     keyField="Id"
+			                     onsave="{!c.rideDataTablesHandleSave}"
+			                     errors="{!v.errors}"
+			/>
+		</aura:if>
+		<aura:if isTrue="{!empty(v.rides)}">
+			<p>List is empty</p>
+		</aura:if>
+	</div>
+
+	<div class="slds-theme_default">
+	</div>
+</aura:component>

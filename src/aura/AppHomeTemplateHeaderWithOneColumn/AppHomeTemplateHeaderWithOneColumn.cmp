@@ -1,0 +1,17 @@
+<aura:component implements="lightning:appHomeTemplate" description="Page template with header and one column">
+
+	<aura:attribute name="header" type="Aura.Component[]" description="Page Header" />
+	<aura:attribute name="mainColumn" type="Aura.Component[]" description="Page Content Column" />
+
+	<!--<div class="slds-grid slds-grid_align-center">-->
+		<!--<lightning:layout>-->
+			<!--<lightning:layoutItem >-->
+				<div>{!v.header}</div>
+			<!--</lightning:layoutItem>-->
+			<!--<lightning:layoutItem>-->
+				<div>{!v.mainColumn}</div>
+			<!--</lightning:layoutItem>-->
+		<!--</lightning:layout>-->
+	<!--</div>-->
+
+</aura:component>
