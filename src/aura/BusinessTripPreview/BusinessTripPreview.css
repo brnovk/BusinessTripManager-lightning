@@ -1,3 +1,6 @@
-.THIS .toastMessage.forceActionsText{
-    white-space : pre-line !important;
+.THIS .ridesDataTable td:nth-child(1){
+	display:none;
+}
+.THIS .ridesDataTable th:nth-child(1){
+	display: none;
 }

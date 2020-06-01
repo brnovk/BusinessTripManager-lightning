@@ -1,5 +1,6 @@
 <aura:component description="Business Trip Preview" controller="BusinessTripPreviewController"
                 implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction">
+
 	<aura:attribute name="recordId" type="String" />
 	<aura:attribute name="isEditableMode" type="Boolean" required="false" default="false" />
 
@@ -10,12 +11,9 @@
 
 	<aura:attribute name="validationPickListValuesMap" type="Map" default="{}" />
 
-	<!--<aura:attribute type="BusinessTripCardsMenuController.PickListEntryWrapper[]" name="businessTripRidesStatuses" />-->
-	<!--<aura:attribute type="BusinessTripCardsMenuController.PickListEntryWrapper[]" name="businessTripRidesTripTypes" />-->
+	<aura:handler name="init" action="{!c.doInit}" value="{!this}" />
 
 	<aura:handler event="force:refreshView" action="{!c.doInit}" />
-
-	<aura:handler name="init" action="{!c.doInit}" value="{!this}" />
 
 	<lightning:overlayLibrary aura:id="overlayLibraryId"/>
 	<lightning:notificationsLibrary aura:id="notificationsLibraryId"/>
@@ -59,8 +57,12 @@
 		</div>
 
 		<aura:if isTrue="{!not(empty(v.rides))}">
+			<!-- showRowNumberColumn is SF-bug: always display in "edit mode".
+			"Row Number Column" hide in CSS, don't touch this attribute! -->
 			<lightning:datatable aura:id="dtTable"
 			                     hideCheckboxColumn="true"
+			                     showRowNumberColumn="true"
+			                     class="ridesDataTable"
 			                     columns="{!v.risesDataTableColumns}"
 			                     data="{!v.rides}"
 			                     keyField="Id"

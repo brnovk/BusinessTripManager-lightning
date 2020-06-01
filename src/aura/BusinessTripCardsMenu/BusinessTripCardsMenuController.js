@@ -16,7 +16,10 @@
 	},
 
 	newButtonClickHandler: function (component, event, helper) {
-		// TODO add handler here
-		console.log('CALL newButtonClickHandler');
+		let createRecordEvent = $A.get("e.force:createRecord");
+		createRecordEvent.setParams({
+			"entityApiName": "Business_Trip__c"
+		});
+		createRecordEvent.fire();
 	}
 });

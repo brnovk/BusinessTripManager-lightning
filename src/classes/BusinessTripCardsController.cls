@@ -2,7 +2,6 @@ public with sharing class BusinessTripCardsController {
 
 	public static String MsgNotAllowedReadingObject = 'You do not have read access to the object: ';
 	public static String MsgNotAllowedDeleteObject = 'You do not have access to delete the object: ';
-	// You do not have access to delete the object: xxx
 
 	@AuraEnabled
 	public static List<Business_Trip__c> fetchBusinessTrips(List<String> searchStatuses, List<String> searchTypes) {

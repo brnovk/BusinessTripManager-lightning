@@ -1,5 +1,6 @@
 <aura:component description="Business Trip Cards Grid" controller="BusinessTripCardsController"
                 implements="flexipage:availableForAllPageTypes">
+
 	<aura:attribute name="businessTrips" type="Business_Trip__c[]" />
 	<aura:attribute name="searchTypes" type="String[]" />
 	<aura:attribute name="searchStatuses" type="String[]" />

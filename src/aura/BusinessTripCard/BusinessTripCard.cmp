@@ -1,73 +1,22 @@
 <aura:component description="Business Trip Card Component" controller="BusinessTripCardsController">
+
 	<aura:attribute type="Business_Trip__c" name="businessTrip" required="true" />
 	<aura:attribute type="Integer" name="countHidedRides" required="false" default="0" />
-
-	<aura:attribute name="strRecId" type="String" />
-	<lightning:overlayLibrary aura:id="overlayLibDemo"/>
 
 	<aura:handler name="init" action="{!c.doInit}" value="{!this}" />
 
 	<lightning:overlayLibrary aura:id="overlayLib"/>
 
-	<!--<lightning:card iconName="utility:tracker" variant="Narrow" title="{!v.businessTrip.Name}">-->
-		<!--<lightning:layout horizontalAlign="spread">-->
-			<!--<lightning:layoutItem flexibility="shrink">-->
-				<!--<div class="slds-p-horizontal&#45;&#45;small">-->
-					<!--<div>-->
-						<!--<span class="label">Employee Name:</span>-->
-						<!--<span>{!v.businessTrip.Employee__r.Name}</span>-->
-					<!--</div>-->
-					<!--<div>-->
-						<!--<span class="label">Target:</span>-->
-						<!--<span>{!v.businessTrip.Target__c}</span>-->
-					<!--</div>-->
-					<!--<aura:if isTrue="{!not(empty(v.businessTrip.Rides__r))}">-->
-						<!--<aura:iteration items="{!v.businessTrip.Rides__r}" var="ride">-->
-							<!--<p>-&#45;&#45;&#45;&#45;</p>-->
-							<!--<div>-->
-								<!--<span class="label">Start Time:</span>-->
-								<!--<span>{!ride.Start_Time__c}</span>-->
-							<!--</div>-->
-							<!--<div>-->
-								<!--<span class="label">End Time:</span>-->
-								<!--<span>{!ride.End_Time__c}</span>-->
-							<!--</div>-->
-							<!--<div>-->
-								<!--<span class="label">Status:</span>-->
-								<!--<span>{!ride.Status__c}</span>-->
-							<!--</div>-->
-							<!--<div>-->
-								<!--<span class="label">Ticket Number:</span>-->
-								<!--<span>{!ride.Ticket_Number__c}</span>-->
-							<!--</div>-->
-							<!--<div>-->
-								<!--<span class="label">Type Of Trip:</span>-->
-								<!--<span>{!ride.Type_Of_Trip__c}</span>-->
-							<!--</div>-->
-						<!--</aura:iteration>-->
-					<!--</aura:if>-->
-					<!--<aura:if isTrue="{!empty(v.businessTrip.Rides__r)}">-->
-						<!--<p>Rides is empty</p>-->
-					<!--</aura:if>-->
-				<!--</div>-->
-			<!--</lightning:layoutItem>-->
-		<!--</lightning:layout>-->
-	<!--</lightning:card>-->
-
 	<lightning:card iconName="utility:tracker" class="slds-m-around_x-small slds-m-bottom_none slds-m-right_none">
-
 		<aura:set attribute="title">{!v.businessTrip.Name}</aura:set>
-
 		<aura:set attribute="actions">
-			<!--<lightning:button label="View" onclick="" />-->
-			<!--<lightning:button label="Edit" onclick="" />-->
+			<!--suppress BadExpressionStatementJS -->
 			<lightning:button label="Detail" onclick="{!c.handleShowModal}" />
+			<!--suppress BadExpressionStatementJS -->
 			<lightning:buttonMenu alternativeText="Show menu" onselect="{!c.buttonMenuSelectHandler}" >
-				<!--<lightning:menuSubheader label="Header Alpha" />-->
 				<lightning:menuItem value="Edit" label="Edit" />
 				<lightning:menuItem value="Delete" label="Delete" />
 				<lightning:menuItem value="Add ride" label="Add ride" />
-				<!--<lightning:menuSubheader label="Header Beta" />-->
 				<lightning:menuItem value="View Business Trip in standard page" label="View Business Trip in standard page" />
 				<lightning:menuItem value="View Rides in standard page" label="View Rides in standard page" />
 			</lightning:buttonMenu>
@@ -111,10 +60,9 @@
 				</p>
 			</aura:if>
 			<aura:if isTrue="{!empty(v.businessTrip.Rides__r)}">
-				<p>Rides are empty</p>
+				<p>List of business rides is empty</p>
 			</aura:if>
 		</aura:set>
 
 	</lightning:card>
-
 </aura:component>

@@ -5,6 +5,7 @@
 			component.set("v.countHidedRides", rides.length - 1);
 		}
 	},
+
 	navigateToSObject: function(component, event, helper) {
 		let sObjectId = event.srcElement.dataset.id;
 		let navEvt = $A.get("e.force:navigateToSObject");
@@ -14,30 +15,15 @@
 		});
 		navEvt.fire();
 	},
+
 	handleShowModal: function(component, event, helper) {
-		// var modalBody;
-		// $A.createComponent("c:BusinessTripCard", {},
-		// 	function(content, status) {
-		// 		if (status === "SUCCESS") {
-		// 			modalBody = content;
-		// 			component.find('overlayLib').showCustomModal({
-		// 				header: "Application Confirmation",
-		// 				body: modalBody,
-		// 				showCloseButton: true,
-		// 				cssClass: "mymodal",
-		// 				closeCallback: function() {
-		// 					alert('You closed the alert!');
-		// 				}
-		// 			})
-		// 		}
-		// 	});
 		let businessTripId = component.get("v.businessTrip.Id");
 		console.log('Business Trip Id ====> ' + businessTripId);
 		$A.createComponent("c:BusinessTripPreview",
 			{ recordId : businessTripId },
 			function(result, status) {
 				if (status === "SUCCESS") {
-					component.find('overlayLibDemo').showCustomModal({
+					component.find('overlayLib').showCustomModal({
 						header: "Business Trip",
 						body: result,
 						showCloseButton: true,
@@ -46,31 +32,15 @@
 				}
 			});
 	},
+
 	handleShowModal2: function(component, event, helper) {
-		console.log('some');
-		// var modalBody;
-		// $A.createComponent("c:BusinessTripCard", {},
-		// 	function(content, status) {
-		// 		if (status === "SUCCESS") {
-		// 			modalBody = content;
-		// 			component.find('overlayLib').showCustomModal({
-		// 				header: "Application Confirmation",
-		// 				body: modalBody,
-		// 				showCloseButton: true,
-		// 				cssClass: "mymodal",
-		// 				closeCallback: function() {
-		// 					alert('You closed the alert!');
-		// 				}
-		// 			})
-		// 		}
-		// 	});
-		var businessTripId = component.get("v.businessTrip.Id");
+		const businessTripId = component.get("v.businessTrip.Id");
 		console.log('Business Trip Id ====> ' + businessTripId);
 		$A.createComponent("c:BusinessTripPreview",
 			{ recordId : businessTripId, isEditableMode : true },
 			function(result, status) {
 				if (status === "SUCCESS") {
-					component.find('overlayLibDemo').showCustomModal({
+					component.find('overlayLib').showCustomModal({
 						header: "Business Trip",
 						body: result,
 						showCloseButton: true,
@@ -79,8 +49,9 @@
 				}
 			});
 	},
+
 	buttonMenuSelectHandler: function(component, event, helper) {
-		var selectedMenu = event.detail.menuItem.get("v.value");
+		const selectedMenu = event.detail.menuItem.get("v.value");
 		console.log('selectedMenu-' + selectedMenu);
 		switch(selectedMenu) {
 			case "Edit": {
@@ -90,7 +61,7 @@
 					{ recordId : businessTripId, isEditableMode : true },
 					function(result, status) {
 						if (status === "SUCCESS") {
-							component.find('overlayLibDemo').showCustomModal({
+							component.find('overlayLib').showCustomModal({
 								header: "Business Trip",
 								body: result,
 								showCloseButton: true,
@@ -185,6 +156,14 @@
 			} break;
 			case "Add ride": {
 				let businessTripId = component.get("v.businessTrip.Id");
+				var createRecordEvent = $A.get("e.force:createRecord");
+				createRecordEvent.setParams({
+					"entityApiName": "Ride__c",
+					"defaultFieldValues": {
+						'Business_Trip__c': businessTripId
+					}
+				});
+				createRecordEvent.fire();
 				// TODO write jump to new Ride record modal
 			} break;
 		}
