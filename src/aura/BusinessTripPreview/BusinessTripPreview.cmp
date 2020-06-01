@@ -8,6 +8,11 @@
 	<aura:attribute name="errors" type="Object" />
 	<aura:attribute name="risesDataTableColumns" type="List" />
 
+	<aura:attribute name="validationPickListValuesMap" type="Map" default="{}" />
+
+	<!--<aura:attribute type="BusinessTripCardsMenuController.PickListEntryWrapper[]" name="businessTripRidesStatuses" />-->
+	<!--<aura:attribute type="BusinessTripCardsMenuController.PickListEntryWrapper[]" name="businessTripRidesTripTypes" />-->
+
 	<aura:handler event="force:refreshView" action="{!c.doInit}" />
 
 	<aura:handler name="init" action="{!c.doInit}" value="{!this}" />
@@ -43,7 +48,16 @@
 			</aura:if>
 		</div>
 
-		<h1>Rides</h1>
+		<div style="color: #4F6A92"
+		     class="slds-breadcrumb slds-m-bottom_x-small slds-m-left_xx-small slds-text-heading_small slds-text-font_monospace">
+			<span class="slds-breadcrumb__item slds-m-right_xx-small">
+				Business Trip
+			</span>
+			<span class="slds-breadcrumb__item slds-p-left_medium">
+				Rides
+			</span>
+		</div>
+
 		<aura:if isTrue="{!not(empty(v.rides))}">
 			<lightning:datatable aura:id="dtTable"
 			                     hideCheckboxColumn="true"
@@ -55,10 +69,7 @@
 			/>
 		</aura:if>
 		<aura:if isTrue="{!empty(v.rides)}">
-			<p>List is empty</p>
+			<p class="slds-m-left_xx-small">List of business rides is empty</p>
 		</aura:if>
-	</div>
-
-	<div class="slds-theme_default">
 	</div>
 </aura:component>

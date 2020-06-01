@@ -1,6 +1,8 @@
 public with sharing class BusinessTripCardsController {
 
 	public static String MsgNotAllowedReadingObject = 'You do not have read access to the object: ';
+	public static String MsgNotAllowedDeleteObject = 'You do not have access to delete the object: ';
+	// You do not have access to delete the object: xxx
 
 	@AuraEnabled
 	public static List<Business_Trip__c> fetchBusinessTrips(List<String> searchStatuses, List<String> searchTypes) {
@@ -32,5 +34,27 @@ public with sharing class BusinessTripCardsController {
 				'AND Type_Of_Trip__c IN: searchTypes ) ';
 		}
 		return Database.query(query);
+	}
+
+	@AuraEnabled
+	public static void deleteBusinessTripWithRides(Id businessTripId) {
+		if (!SObjectType.Business_Trip__c.isDeletable()) {
+			NoAccessException accessException = new NoAccessException();
+			accessException.setMessage(MsgNotAllowedDeleteObject + SObjectType.Business_Trip__c.getName());
+			throw accessException;
+		}
+		if (!SObjectType.Ride__c.isDeletable()) {
+			NoAccessException accessException = new NoAccessException();
+			accessException.setMessage(MsgNotAllowedDeleteObject + SObjectType.Ride__c.getName());
+			throw accessException;
+		}
+		List<Ride__c> rides = [ SELECT Id FROM Ride__c WHERE Business_Trip__c =: businessTripId ];
+		List<Business_Trip__c> businessTrips = [ SELECT Id FROM Business_Trip__c WHERE Id =: businessTripId ];
+		if (!rides.isEmpty()) {
+			delete rides;
+		}
+		if (!businessTrips.isEmpty()) {
+			delete businessTrips;
+		}
 	}
 }

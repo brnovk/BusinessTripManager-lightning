@@ -1,4 +1,4 @@
-<aura:component description="Business Trip Card Component">
+<aura:component description="Business Trip Card Component" controller="BusinessTripCardsController">
 	<aura:attribute type="Business_Trip__c" name="businessTrip" required="true" />
 	<aura:attribute type="Integer" name="countHidedRides" required="false" default="0" />
 
@@ -66,9 +66,10 @@
 				<!--<lightning:menuSubheader label="Header Alpha" />-->
 				<lightning:menuItem value="Edit" label="Edit" />
 				<lightning:menuItem value="Delete" label="Delete" />
-				<!--<lightning:menuSubheader label="Header Beta" />-->
-				<lightning:menuItem value="View in standard page" label="View in standard page" />
 				<lightning:menuItem value="Add ride" label="Add ride" />
+				<!--<lightning:menuSubheader label="Header Beta" />-->
+				<lightning:menuItem value="View Business Trip in standard page" label="View Business Trip in standard page" />
+				<lightning:menuItem value="View Rides in standard page" label="View Rides in standard page" />
 			</lightning:buttonMenu>
 		</aura:set>
 

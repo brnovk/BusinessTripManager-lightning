@@ -13,6 +13,73 @@
 			{ label: 'Type Of Trip', fieldName: 'Type_Of_Trip__c', type: 'text', wrapText: true, editable: isEditableMode }
 		]);
 	},
+
+	retrieveValidPickListValuesStatus: function(component) { // retrieve valid Status__c values
+		let fetchBusinessTripsAction = component.get("c.fetchBusinessTripRidesStatuses");
+		fetchBusinessTripsAction.setCallback(this,
+			function (response) {
+				const state = response.getState();
+				if (state === "SUCCESS") {
+					let value = component.get("v.validationPickListValuesMap");
+					value['Status__c'] = response.getReturnValue();
+					component.set("v.validationPickListValuesMap", value);
+				} else if (state === "ERROR") {
+					let errors = response.getError();
+					let errorMessage = (errors && errors[0] && errors[0].message)
+						? "Error message: " + errors[0].message
+						: "Unknown error";
+					let toastEvent = $A.get("e.force:showToast");
+					if (!toastEvent) {
+						let WARNING_MESSAGE = "Platform is not supported \"showToast\" event";
+						console.error(WARNING_MESSAGE);
+						console.error(errorMessage);
+						alert(errorMessage);
+					} else {
+						console.error(errorMessage);
+						toastEvent.setParams({
+							"title": "Picklist Initialize Error", "message": errorMessage, "type": "error"
+						});
+						toastEvent.fire();
+					}
+				}
+			}
+		);
+		$A.enqueueAction(fetchBusinessTripsAction);
+	},
+
+	retrieveValidPickListValuesTypeOfTrip: function(component) { // retrieve valid Type_Of_Trip__c values
+		let fetchBusinessTripsAction = component.get("c.fetchBusinessTripRidesTripTypes");
+		fetchBusinessTripsAction.setCallback(this,
+			function (response) {
+				const state = response.getState();
+				if (state === "SUCCESS") {
+					let value = component.get("v.validationPickListValuesMap");
+					value['Type_Of_Trip__c'] = response.getReturnValue();
+					component.set("v.validationPickListValuesMap", value);
+				} else if (state === "ERROR") {
+					let errors = response.getError();
+					let errorMessage = (errors && errors[0] && errors[0].message)
+						? "Error message: " + errors[0].message
+						: "Unknown error";
+					let toastEvent = $A.get("e.force:showToast");
+					if (!toastEvent) {
+						let WARNING_MESSAGE = "Platform is not supported \"showToast\" event";
+						console.error(WARNING_MESSAGE);
+						console.error(errorMessage);
+						alert(errorMessage);
+					} else {
+						console.error(errorMessage);
+						toastEvent.setParams({
+							"title": "Picklist Initialize Error", "message": errorMessage, "type": "error"
+						});
+						toastEvent.fire();
+					}
+				}
+			}
+		);
+		$A.enqueueAction(fetchBusinessTripsAction);
+	},
+
 	retrieveRides: function (component) {
 		let businessTripId = component.get("v.recordId");
 		let fetchRidesAction = component.get("c.retrieveRides");

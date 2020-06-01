@@ -1,6 +1,8 @@
 ({
 	doInit: function(component, event, helper) {
 		helper.initializeRisesDataTableColumns(component);
+		helper.retrieveValidPickListValuesStatus(component);
+		helper.retrieveValidPickListValuesTypeOfTrip(component);
 		helper.retrieveRides(component);
 	},
 
@@ -18,9 +20,57 @@
 		component.find("overlayLibraryId").notifyClose();
 		$A.get('e.force:refreshView').fire();
 	},
+
 	rideDataTablesHandleSave: function(component, event, helper) {
 		let savedRecordsData = event.getParam("draftValues");
-		// TODO add validation of saved data (picklists)
+
+		// validation of picklist values (NOTE: need rewrite here)
+		let validationErrorMessage = "";
+		let validationPickListValuesMap = component.get("v.validationPickListValuesMap");
+		for (let fieldForValidation in validationPickListValuesMap) {
+			if (!validationPickListValuesMap.hasOwnProperty(fieldForValidation)) {
+				continue;
+			}
+			for (let i = 0; i < savedRecordsData.length; i++) {
+				let savedRecordRow = savedRecordsData[i];
+				for (let fieldForSave in savedRecordRow) {
+					let isValid = false;
+					if (!savedRecordRow.hasOwnProperty(fieldForSave) || fieldForSave !== fieldForValidation) {
+						isValid = true;
+						continue;
+					}
+					let savedValue = savedRecordRow[fieldForSave];
+					let validValues = validationPickListValuesMap[fieldForValidation];
+					for (let j = 0; j < validValues.length; j++) {
+						let validValue = validValues[j];
+						if (savedValue.trim() === validValue.value) {
+							isValid = true;
+							break;
+						}
+					}
+					if (!isValid) {
+						let vVals = "";
+						for (let j = 0; j < validValues.length; j++) {
+							vVals += '"' + validValues[j].value + '"';
+							if (j + 1 !== validValues.length) {
+								vVals += ', ';
+							} else {
+								vVals += '. ';
+							}
+						}
+						validationErrorMessage += '\nValue "' + savedValue + '" is invalid for this field. Allowed values ​​are ' + vVals;
+					}
+				}
+			}
+		}
+		if (validationErrorMessage) {
+			console.error(validationErrorMessage);
+			let showToast = $A.get("e.force:showToast");
+			showToast.setParams({ "title": "Validation error", "type": "error", "message": validationErrorMessage });
+			showToast.fire();
+			return;
+		}
+
 		let totalRecordEdited = savedRecordsData.length;
 		let action = component.get("c.updateRides");
 		action.setParams({ "rides": savedRecordsData });

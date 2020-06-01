@@ -25,4 +25,14 @@ public with sharing class BusinessTripPreviewController {
 		}
 		update rides;
 	}
+
+	@AuraEnabled
+	public static List<BusinessTripCardsMenuController.PickListEntryWrapper> fetchBusinessTripRidesStatuses() {
+		return BusinessTripCardsMenuController.fetchBusinessTripRidesStatuses();
+	}
+
+	@AuraEnabled
+	public static List<BusinessTripCardsMenuController.PickListEntryWrapper> fetchBusinessTripRidesTripTypes() {
+		return BusinessTripCardsMenuController.fetchBusinessTripRidesTripTypes();
+	}
 }
