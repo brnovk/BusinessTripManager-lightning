@@ -1,3 +1,4 @@
+// noinspection JSUnusedGlobalSymbols
 ({
 	doInit: function (component, event, helper) {
 		// Initializing picklist for search (status/type)
@@ -17,9 +18,7 @@
 
 	newButtonClickHandler: function (component, event, helper) {
 		let createRecordEvent = $A.get("e.force:createRecord");
-		createRecordEvent.setParams({
-			"entityApiName": "Business_Trip__c"
-		});
+		createRecordEvent.setParams({ "entityApiName": "Business_Trip__c" });
 		createRecordEvent.fire();
 	}
 });

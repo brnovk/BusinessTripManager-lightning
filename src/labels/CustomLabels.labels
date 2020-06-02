@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>BT_BTN_Add</fullName>
+        <categories>Business Trip</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Add</shortDescription>
+        <value>Add</value>
+    </labels>
+    <labels>
+        <fullName>BT_BTN_Card_Add_Ride</fullName>
+        <categories>Business Trip</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Business Trip Card Button Add Ride</shortDescription>
+        <value>Add ride</value>
+    </labels>
+    <labels>
+        <fullName>BT_BTN_Card_View_Business_Trip</fullName>
+        <categories>Business Trip</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Business Trip Card Button View Business Trip</shortDescription>
+        <value>View Business Trip in standard page</value>
+    </labels>
+    <labels>
+        <fullName>BT_BTN_Card_View_Rides</fullName>
+        <categories>Business Trip</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Business Trip Card Button View Rides</shortDescription>
+        <value>View Rides in standard page</value>
+    </labels>
+    <labels>
+        <fullName>BT_BTN_Delete</fullName>
+        <categories>Business Trip</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Delete</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>BT_BTN_Detail</fullName>
+        <categories>Business Trip</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Detail</shortDescription>
+        <value>Detail</value>
+    </labels>
+    <labels>
+        <fullName>BT_BTN_Edit</fullName>
+        <categories>Business Trip</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Edit</shortDescription>
+        <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>BT_BTN_New</fullName>
+        <categories>Business Trip</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button New</shortDescription>
+        <value>New</value>
+    </labels>
+    <labels>
+        <fullName>BT_BTN_Reset</fullName>
+        <categories>Business Trip</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Reset</shortDescription>
+        <value>Reset</value>
+    </labels>
+    <labels>
+        <fullName>BT_BTN_Save_And_Close_Modal</fullName>
+        <categories>Business Trip</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Save and Close modal</shortDescription>
+        <value>Save and close modal</value>
+    </labels>
+    <labels>
+        <fullName>BT_BTN_Search</fullName>
+        <categories>Business Trip</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Search</shortDescription>
+        <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>BT_LBL_Card_Employee</fullName>
+        <categories>Business Trip</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Business Trip Card Label Employee</shortDescription>
+        <value>Employee</value>
+    </labels>
+    <labels>
+        <fullName>BT_LBL_Card_Rides_Absent</fullName>
+        <categories>Business Trip</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Business Trip Card Rides Absent</shortDescription>
+        <value>List of business rides is empty</value>
+    </labels>
+    <labels>
+        <fullName>BT_LBL_Card_Target</fullName>
+        <categories>Business Trip</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Business Trip Card Label Target</shortDescription>
+        <value>Target</value>
+    </labels>
+    <labels>
+        <fullName>BT_LBL_Search_Panel_Title</fullName>
+        <categories>Business Trip</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Search Panel Title</shortDescription>
+        <value>Manage records</value>
+    </labels>
+    <labels>
+        <fullName>BT_MSG_Delete_Confirmation</fullName>
+        <categories>Business Trip</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message delete confirmation</shortDescription>
+        <value>Are you sure you want to delete this item?</value>
+    </labels>
+    <labels>
+        <fullName>BT_MSG_Not_Allowed_Delete_Object</fullName>
+        <categories>Business Trip</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message Not Allowed Delete Object</shortDescription>
+        <value>You do not have access to delete the object:</value>
+    </labels>
+    <labels>
+        <fullName>BT_MSG_Not_Allowed_Reading_Object</fullName>
+        <categories>Business Trip</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message Not Allowed Reading Object</shortDescription>
+        <value>You do not have read access to the object:</value>
+    </labels>
+    <labels>
+        <fullName>BT_MSG_Not_Allowed_Update_Object</fullName>
+        <categories>Business Trip</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message Not Allowed Update Object</shortDescription>
+        <value>You do not have write access to the object:</value>
+    </labels>
+    <labels>
+        <fullName>BT_MSG_Not_Support_Toast_Event</fullName>
+        <categories>Business Trip</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message not supported not supported showToast event</shortDescription>
+        <value>Platform is not supported &quot;showToast&quot; event</value>
+    </labels>
+    <labels>
+        <fullName>BT_MSG_Request_Incomplete_Body</fullName>
+        <categories>Business Trip</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Server request incomplete (body)</shortDescription>
+        <value>Server could not be reached. Check your internet connection.</value>
+    </labels>
+    <labels>
+        <fullName>BT_MSG_Request_Incomplete_Header</fullName>
+        <categories>Business Trip</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Server request incomplete (header)</shortDescription>
+        <value>Server request not completed</value>
+    </labels>
+    <labels>
+        <fullName>BT_MSG_Search_Result_Empty_Part_1</fullName>
+        <categories>Business Trip</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Search result is empty message (part 1)</shortDescription>
+        <value>The search result is empty or there are no entries.</value>
+    </labels>
+    <labels>
+        <fullName>BT_MSG_Search_Result_Empty_Part_2</fullName>
+        <categories>Business Trip</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Search result is empty message (part 2)</shortDescription>
+        <value>Want to add a Business Trip?</value>
+    </labels>
+    <labels>
+        <fullName>BT_MSG_Unknown_Error</fullName>
+        <categories>Business Trip</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Unknown error message</shortDescription>
+        <value>Unknown error</value>
+    </labels>
+</CustomLabels>

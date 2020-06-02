@@ -4,9 +4,14 @@
 	<aura:attribute name="businessTrips" type="Business_Trip__c[]" />
 	<aura:attribute name="searchTypes" type="String[]" />
 	<aura:attribute name="searchStatuses" type="String[]" />
+	<aura:attribute name="isLoaded" type="Boolean" default="false" />
 
 	<aura:handler name="init" action="{!c.doInit}" value="{!this}" />
 	<aura:handler event="c:BusinessTripSearchEvent" action="{!c.businessTripSearchEventHandler}"/>
+
+	<aura:if isTrue="{!v.isLoaded}">
+		<lightning:spinner variant="brand" size="medium" alternativeText="Loading..." />
+	</aura:if>
 
 	<aura:if isTrue="{!not(empty(v.businessTrips))}">
 		<div class="slds-grid slds-wrap">
@@ -18,6 +23,12 @@
 		</div>
 	</aura:if>
 	<aura:if isTrue="{!empty(v.businessTrips)}">
-		<p>List is empty</p>
+		<div class="slds-panel slds-m-vertical_x-small slds-p-around_x-small">
+			<p>{!$Label.c.BT_MSG_Search_Result_Empty_Part_1}</p>
+			<p>
+				{!$Label.c.BT_MSG_Search_Result_Empty_Part_2}
+				(<a href="javascript:void(0)" onclick="{!c.addBusinessTripHandler}">{!$Label.c.BT_BTN_Add}</a>)
+			</p>
+		</div>
 	</aura:if>
 </aura:component>

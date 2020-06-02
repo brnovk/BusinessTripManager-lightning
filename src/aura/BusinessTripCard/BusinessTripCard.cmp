@@ -11,14 +11,14 @@
 		<aura:set attribute="title">{!v.businessTrip.Name}</aura:set>
 		<aura:set attribute="actions">
 			<!--suppress BadExpressionStatementJS -->
-			<lightning:button label="Detail" onclick="{!c.handleShowModal}" />
+			<lightning:button label="{!$Label.c.BT_BTN_Detail}" onclick="{!c.detailButtonClickHandler}" />
 			<!--suppress BadExpressionStatementJS -->
-			<lightning:buttonMenu alternativeText="Show menu" onselect="{!c.buttonMenuSelectHandler}" >
-				<lightning:menuItem value="Edit" label="Edit" />
-				<lightning:menuItem value="Delete" label="Delete" />
-				<lightning:menuItem value="Add ride" label="Add ride" />
-				<lightning:menuItem value="View Business Trip in standard page" label="View Business Trip in standard page" />
-				<lightning:menuItem value="View Rides in standard page" label="View Rides in standard page" />
+			<lightning:buttonMenu alternativeText="Show menu" onselect="{!c.dropDownButtonMenuHandler}" >
+				<lightning:menuItem value="Edit" label="{!$Label.c.BT_BTN_Edit}" />
+				<lightning:menuItem value="Delete" label="{!$Label.c.BT_BTN_Delete}" />
+				<lightning:menuItem value="AddRide" label="{!$Label.c.BT_BTN_Card_Add_Ride}" />
+				<lightning:menuItem value="ViewBusinessTripInSP" label="{!$Label.c.BT_BTN_Card_View_Business_Trip}" />
+				<lightning:menuItem value="ViewRidesInSP" label="{!$Label.c.BT_BTN_Card_View_Rides}" />
 			</lightning:buttonMenu>
 		</aura:set>
 
@@ -26,7 +26,7 @@
 		<lightning:layout horizontalAlign="spread">
 			<div class="slds-p-horizontal--medium slds-truncate">
 				<div class="card-property">
-					<p class="label">Employee:</p>
+					<p class="label">{!$Label.c.BT_LBL_Card_Employee}:</p>
 					<p class="slds-truncate" title="{!v.businessTrip.Employee__r.Name}">
 						<!--suppress BadExpressionStatementJS -->
 						<a href="javascript:void(0)" onclick="{!c.navigateToSObject}"
@@ -36,7 +36,7 @@
 					</p>
 				</div>
 				<div class="card-property">
-					<p class="label">Target:</p>
+					<p class="label">{!$Label.c.BT_LBL_Card_Target}:</p>
 					<p class="slds-truncate" title="{!v.businessTrip.Target__c}">
 						{!v.businessTrip.Target__c}
 					</p>
@@ -53,16 +53,15 @@
 					<lightning:formattedDateTime value="{!v.businessTrip.Rides__r[0].End_Time__c}"
 					    year="numeric" day="2-digit" month="long" hour="2-digit" minute="2-digit"/>
 					<aura:if isTrue="{!v.countHidedRides}">
-						<span style="font-weight: bold;">
+						<strong>
 							( + {!v.countHidedRides} item<aura:if isTrue="{!v.countHidedRides > 1}">s</aura:if>)
-						</span>
+						</strong>
 					</aura:if>
 				</p>
 			</aura:if>
 			<aura:if isTrue="{!empty(v.businessTrip.Rides__r)}">
-				<p>List of business rides is empty</p>
+				<p>{!$Label.c.BT_LBL_Card_Rides_Absent}</p>
 			</aura:if>
 		</aura:set>
-
 	</lightning:card>
 </aura:component>

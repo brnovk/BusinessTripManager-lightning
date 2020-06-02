@@ -1,15 +1,16 @@
 <aura:component description="BusinessTripCardsMenu" controller="BusinessTripCardsMenuController"
                 implements="flexipage:availableForAllPageTypes">
 
-	<aura:attribute type="BusinessTripCardsMenuController.PickListEntryWrapper[]" name="businessTripRidesStatuses" />
-	<aura:attribute type="BusinessTripCardsMenuController.PickListEntryWrapper[]" name="businessTripRidesTripTypes" />
+	<aura:attribute type="BusinessTripUtilities.PickListEntryWrapper[]" name="businessTripRidesStatuses" />
+	<aura:attribute type="BusinessTripUtilities.PickListEntryWrapper[]" name="businessTripRidesTripTypes" />
 
 	<aura:handler name="init" action="{!c.doInit}" value="{!this}" />
 
 	<aura:registerEvent name="businessTripSearchEvent" type="c:BusinessTripSearchEvent"/>
 
-	<lightning:layout class="slds-page-header">
-		<lightning:layoutItem class="slds-page-header__col-title slds-m-bottom_x-small">
+	<lightning:layout class="slds-page-header" multipleRows="true" verticalAlign="center">
+		<lightning:layoutItem class="slds-page-header__col-title"
+		                      size="6" smallDeviceSize="12" mediumDeviceSize="6">
 			<div class="slds-media">
 				<div class="slds-media__figure">
 					<lightning:icon iconName="standard:action_list_component" size="small"
@@ -19,8 +20,9 @@
 					<div class="slds-page-header__name">
 						<div class="slds-page-header__name-title">
 							<h1>
-								<span class="slds-page-header__title slds-truncate" title="Business Trips Manager">
-									Business Trips Manager
+								<span class="slds-page-header__title slds-truncate"
+								      title="{!$Label.c.BT_LBL_Search_Panel_Title}">
+									{!$Label.c.BT_LBL_Search_Panel_Title}
 								</span>
 							</h1>
 						</div>
@@ -29,8 +31,9 @@
 			</div>
 		</lightning:layoutItem>
 		<!--suppress HtmlUnknownAttribute -->
-		<lightning:layoutItem alignmentBump="left" class="slds-page-header__col-actions">
-			<div class="slds-page-header__controls">
+		<lightning:layoutItem alignmentBump="left" class="slds-page-header__col-actions slds-clearfix"
+		                      size="6" smallDeviceSize="12" mediumDeviceSize="6">
+			<div class="slds-page-header__controls slds-float_right">
 				<div class="slds-page-header__control">
 					<lightning:select aura:id="selectStatusInputId" label="Select a Status">
 						<option value="">Any</option>
@@ -40,27 +43,30 @@
 					</lightning:select>
 				</div>
 				<div class="slds-page-header__control">
-					<lightning:select aura:id="selectTypeInputId" label="Select a Trip Type">
+					<lightning:select aura:id="selectTypeInputId" label="Select Type">
 						<option value="">Any</option>
 						<aura:iteration items="{!v.businessTripRidesTripTypes}" var="tripTypes">
 							<option value="{!tripTypes.value}">{!tripTypes.label}</option>
 						</aura:iteration>
 					</lightning:select>
 				</div>
-				<div class="slds-page-header__control" style="display: flex; align-items: flex-end;">
+				<div class="slds-page-header__control buttons-wrapper">
 					<ul class="slds-button-group-list">
 						<li class="slds-button-group-item">
+							<!--suppress BadExpressionStatementJS -->
 							<button class="slds-button slds-button_neutral" onclick="{!c.resetButtonClickHandler}">
-								Reset
+								{!$Label.c.BT_BTN_Reset}
 							</button>
 						</li>
 						<li class="slds-button-group-item">
+							<!--suppress BadExpressionStatementJS -->
 							<button class="slds-button slds-button_brand" onclick="{!c.searchButtonClickHandler}">
-								Search
+								{!$Label.c.BT_BTN_Search}
 							</button>
 						</li>
 						<li>
-							<lightning:button label="New" iconName="utility:add" onclick="{!c.newButtonClickHandler}" />
+							<lightning:button label="{!$Label.c.BT_BTN_New}" iconName="utility:add"
+							                  onclick="{!c.newButtonClickHandler}" />
 						</li>
 					</ul>
 				</div>

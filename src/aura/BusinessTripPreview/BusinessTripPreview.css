@@ -1,6 +1,9 @@
-.THIS .ridesDataTable td:nth-child(1){
+.THIS .ridesDataTable td:nth-child(1) {
 	display:none;
 }
-.THIS .ridesDataTable th:nth-child(1){
+.THIS .ridesDataTable th:nth-child(1) {
 	display: none;
+}
+.THIS .slds-breadcrumb {
+	color: #4F6A92;
 }

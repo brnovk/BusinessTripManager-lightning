@@ -1,20 +1,9 @@
 public with sharing class BusinessTripCardsController {
 
-	public static String MsgNotAllowedReadingObject = 'You do not have read access to the object: ';
-	public static String MsgNotAllowedDeleteObject = 'You do not have access to delete the object: ';
-
 	@AuraEnabled
 	public static List<Business_Trip__c> fetchBusinessTrips(List<String> searchStatuses, List<String> searchTypes) {
-		if (!SObjectType.Business_Trip__c.isAccessible()) {
-			NoAccessException accessException = new NoAccessException();
-			accessException.setMessage(MsgNotAllowedReadingObject + SObjectType.Business_Trip__c.getName());
-			throw accessException;
-		}
-		if (!SObjectType.Ride__c.isAccessible()) {
-			NoAccessException accessException = new NoAccessException();
-			accessException.setMessage(MsgNotAllowedReadingObject + SObjectType.Ride__c.getName());
-			throw accessException;
-		}
+		BusinessTripUtilities.checkReadAccess(SObjectType.Business_Trip__c);
+		BusinessTripUtilities.checkReadAccess(SObjectType.Ride__c);
 		Boolean isExistsStatuses = searchStatuses != null && !searchStatuses.isEmpty();
 		Boolean isExistsTypes = searchTypes != null && !searchTypes.isEmpty();
 		String query = '' +
@@ -37,16 +26,8 @@ public with sharing class BusinessTripCardsController {
 
 	@AuraEnabled
 	public static void deleteBusinessTripWithRides(Id businessTripId) {
-		if (!SObjectType.Business_Trip__c.isDeletable()) {
-			NoAccessException accessException = new NoAccessException();
-			accessException.setMessage(MsgNotAllowedDeleteObject + SObjectType.Business_Trip__c.getName());
-			throw accessException;
-		}
-		if (!SObjectType.Ride__c.isDeletable()) {
-			NoAccessException accessException = new NoAccessException();
-			accessException.setMessage(MsgNotAllowedDeleteObject + SObjectType.Ride__c.getName());
-			throw accessException;
-		}
+		BusinessTripUtilities.checkDeleteAccess(SObjectType.Business_Trip__c);
+		BusinessTripUtilities.checkDeleteAccess(SObjectType.Ride__c);
 		List<Ride__c> rides = [ SELECT Id FROM Ride__c WHERE Business_Trip__c =: businessTripId ];
 		List<Business_Trip__c> businessTrips = [ SELECT Id FROM Business_Trip__c WHERE Id =: businessTripId ];
 		if (!rides.isEmpty()) {

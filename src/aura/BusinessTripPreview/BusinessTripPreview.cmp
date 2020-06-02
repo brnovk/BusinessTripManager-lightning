@@ -3,20 +3,23 @@
 
 	<aura:attribute name="recordId" type="String" />
 	<aura:attribute name="isEditableMode" type="Boolean" required="false" default="false" />
-
 	<aura:attribute name="rides" type="Ride__c[]" default="[]" />
 	<aura:attribute name="saveDraftValues" type="Object" />
 	<aura:attribute name="errors" type="Object" />
+	<aura:attribute name="validationError" type="String" />
 	<aura:attribute name="risesDataTableColumns" type="List" />
-
 	<aura:attribute name="validationPickListValuesMap" type="Map" default="{}" />
+	<aura:attribute name="isDisplaySpinner" type="Boolean" default="false" />
 
 	<aura:handler name="init" action="{!c.doInit}" value="{!this}" />
-
 	<aura:handler event="force:refreshView" action="{!c.doInit}" />
 
 	<lightning:overlayLibrary aura:id="overlayLibraryId"/>
 	<lightning:notificationsLibrary aura:id="notificationsLibraryId"/>
+
+	<aura:if isTrue="{!v.isDisplaySpinner}">
+		<lightning:spinner variant="brand" size="small" alternativeText="Loading..." />
+	</aura:if>
 
 	<div class="slds-theme_default">
 		<div class="slds-border_bottom slds-m-bottom_small">
@@ -31,8 +34,13 @@
 					<lightning:inputField fieldName="Name" aura:id="businessTripNameId" />
 					<lightning:inputField fieldName="Employee__c" />
 					<lightning:inputField fieldName="Target__c" />
-					<lightning:button variant="brand" type="submit" name="save" label="Save and close modal"
-					                  class="slds-m-vertical_small slds-m-left_xxx-small" />
+					<lightning:button variant="brand" type="submit" name="save"
+						label="{!$Label.c.BT_BTN_Save_And_Close_Modal}"
+						class="slds-m-vertical_small slds-m-left_xxx-small" />
+					<!--suppress BadExpressionStatementJS -->
+					<lightning:button variant="neutral" type="button" name="addRide"
+						label="{!$Label.c.BT_BTN_Card_Add_Ride}"
+						iconName="utility:add" onclick="{!c.addRideButtonClickHandler}" />
 				</lightning:recordEditForm>
 			</aura:if>
 
@@ -46,8 +54,7 @@
 			</aura:if>
 		</div>
 
-		<div style="color: #4F6A92"
-		     class="slds-breadcrumb slds-m-bottom_x-small slds-m-left_xx-small slds-text-heading_small slds-text-font_monospace">
+		<div class="slds-breadcrumb slds-m-bottom_x-small slds-m-left_xx-small slds-text-heading_small slds-text-font_monospace">
 			<span class="slds-breadcrumb__item slds-m-right_xx-small">
 				Business Trip
 			</span>
@@ -55,6 +62,12 @@
 				Rides
 			</span>
 		</div>
+
+		<aura:if isTrue="{!v.validationError}">
+			<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">
+				{!v.validationError}
+			</div>
+		</aura:if>
 
 		<aura:if isTrue="{!not(empty(v.rides))}">
 			<!-- showRowNumberColumn is SF-bug: always display in "edit mode".
@@ -66,12 +79,13 @@
 			                     columns="{!v.risesDataTableColumns}"
 			                     data="{!v.rides}"
 			                     keyField="Id"
+			                     oncancel="{!c.rideDataTablesCancelSave}"
 			                     onsave="{!c.rideDataTablesHandleSave}"
 			                     errors="{!v.errors}"
 			/>
 		</aura:if>
 		<aura:if isTrue="{!empty(v.rides)}">
-			<p class="slds-m-left_xx-small">List of business rides is empty</p>
+			<p class="slds-m-left_xx-small">{!$Label.c.BT_LBL_Card_Rides_Absent}</p>
 		</aura:if>
 	</div>
 </aura:component>
