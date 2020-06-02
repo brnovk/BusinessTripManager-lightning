@@ -2,6 +2,10 @@
 
 Small app "Business Trip Manager" for Salesforce, on Lightning.
 
+* [Quick start](%23quick-start)
+* [Data-model](%23data-model)
+* [Screenshots of the application](%23screenshots-of-the-application)
+
 ###  Quick start:  
 
 1. On org: go to **Setup** -> **Domain Management** -> **My Domain** -> **Register Domain**  
