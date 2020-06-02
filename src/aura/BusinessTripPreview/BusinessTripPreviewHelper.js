@@ -206,7 +206,7 @@
 				}
 			}
 		} else {
-			errorMessage += "Unknown error";
+			errorMessage += $A.get("$Label.c.BT_MSG_Unknown_Error");
 		}
 		return errorMessage;
 	}
