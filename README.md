@@ -2,7 +2,7 @@
 
 Small app "Business Trip Manager" for Salesforce, on Lightning.
 
-###Quick start:  
+###  Quick start:  
 
 1. On org: go to **Setup** -> **Domain Management** -> **My Domain** -> **Register Domain**  
 2. On the command line: `sfdx force:auth:web:login` -> **login in target org**.  
@@ -18,13 +18,13 @@ Small app "Business Trip Manager" for Salesforce, on Lightning.
 8. On org: **Go to App Launcher** -> **All Items** -> **[Business Trip Manager]**  
 ![Tab in App Launcher](screenshots/tab-in-app-launcher.png)  
   
-###Data-model:  
+###  Data-model:  
 
 Just 2 custom objects:
 ![Data-model](screenshots/data-model.png)
 
 
-###Screenshots of the application:
+###  Screenshots of the application:
 
 ![Tab main window](screenshots/main-window.png)  
 
