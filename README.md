@@ -19,6 +19,7 @@ Small app "Business Trip Manager" for Salesforce, on Lightning.
 ![Tab in App Launcher](screenshots/tab-in-app-launcher.png)  
 
 ###Data-model:
+
 Just 2 custom objects:
 ![Data-model](screenshots/data-model.png)
 
