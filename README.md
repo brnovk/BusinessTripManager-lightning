@@ -2,9 +2,9 @@
 
 Small app "Business Trip Manager" for Salesforce, on Lightning.
 
-* [Quick start](%23quick-start)
-* [Data-model](%23data-model)
-* [Screenshots of the application](%23screenshots-of-the-application)
+* [Quick start](..%2F..%2F%23quick-start)
+* [Data-model](..%2F..%2F%23data-model)
+* [Screenshots of the application](..%2F..%2F%23screenshots-of-the-application)
 
 ###  Quick start:  
 
