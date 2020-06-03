@@ -6,7 +6,7 @@ public with sharing class BusinessTripUtilitiesTest {
 		BusinessTripUtilities.isTestAccessLogic = true;
 		Boolean isExceptionThrown = false;
 		try {
-			BusinessTripUtilities.checkReadAccess(SObjectType.Ride__c);
+			BusinessTripUtilities.checkReadObjectAccess(SObjectType.Ride__c);
 		} catch (NoAccessException ex) {
 			isExceptionThrown = true;
 		}
@@ -18,7 +18,7 @@ public with sharing class BusinessTripUtilitiesTest {
 		BusinessTripUtilities.isTestAccessLogic = true;
 		Boolean isExceptionThrown = false;
 		try {
-			BusinessTripUtilities.checkUpdateAccess(SObjectType.Ride__c);
+			BusinessTripUtilities.checkUpdateObjectAccess(SObjectType.Ride__c);
 		} catch (NoAccessException ex) {
 			isExceptionThrown = true;
 		}
@@ -26,11 +26,11 @@ public with sharing class BusinessTripUtilitiesTest {
 	}
 
 	@IsTest
-	static void testCheckDeleteAccess() {
+	static void testCheckDeleteObjectAccess() {
 		BusinessTripUtilities.isTestAccessLogic = true;
 		Boolean isExceptionThrown = false;
 		try {
-			BusinessTripUtilities.checkDeleteAccess(SObjectType.Ride__c);
+			BusinessTripUtilities.checkDeleteObjectAccess(SObjectType.Ride__c);
 		} catch (NoAccessException ex) {
 			isExceptionThrown = true;
 		}

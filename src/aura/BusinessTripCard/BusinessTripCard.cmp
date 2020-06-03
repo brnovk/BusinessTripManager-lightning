@@ -31,14 +31,14 @@
 						<!--suppress BadExpressionStatementJS -->
 						<a href="javascript:void(0)" onclick="{!c.navigateToSObject}"
 						   title="{!v.businessTrip.Employee__r.Name}" data-id="{!v.businessTrip.Employee__r.Id}">
-							{!v.businessTrip.Employee__r.Name}
+							{!v.businessTrip.Employee__r.Name}&nbsp;
 						</a>
 					</p>
 				</div>
 				<div class="card-property">
 					<p class="label">{!$Label.c.BT_LBL_Card_Target}:</p>
 					<p class="slds-truncate" title="{!v.businessTrip.Target__c}">
-						{!v.businessTrip.Target__c}
+						{!v.businessTrip.Target__c}&nbsp;
 					</p>
 				</div>
 			</div>

@@ -3,31 +3,57 @@ public with sharing class BusinessTripUtilities {
 	@TestVisible
 	private static Boolean isTestAccessLogic = false;
 
-	public static void checkReadAccess(DescribeSObjectResult sObjectType) {
-		if (Test.isRunningTest() || (!sObjectType.isAccessible())) {
-			if (!Test.isRunningTest() || (Test.isRunningTest() && isTestAccessLogic)) {
+	public static void checkReadObjectAccess(DescribeSObjectResult sObjectType) {
+		if ((Test.isRunningTest() && isTestAccessLogic) || (!sObjectType.isAccessible())) {
+			NoAccessException accessException = new NoAccessException();
+			accessException.setMessage(Label.BT_MSG_Not_Allowed_Reading_Object + sObjectType.getName());
+			throw accessException;
+		}
+	}
+
+	public static void checkUpdateObjectAccess(DescribeSObjectResult sObjectType) {
+		if ((Test.isRunningTest() && isTestAccessLogic) || (!sObjectType.isAccessible() || !sObjectType.isUpdateable())) {
+			NoAccessException accessException = new NoAccessException();
+			accessException.setMessage(Label.BT_MSG_Not_Allowed_Update_Object + sObjectType.getName());
+			throw accessException;
+		}
+	}
+
+	public static void checkDeleteObjectAccess(DescribeSObjectResult sObjectType) {
+		if ((Test.isRunningTest() && isTestAccessLogic) || (!sObjectType.isAccessible() || !sObjectType.isDeletable())) {
+			NoAccessException accessException = new NoAccessException();
+			accessException.setMessage(Label.BT_MSG_Not_Allowed_Delete_Object + sObjectType.getName());
+			throw accessException;
+		}
+	}
+
+	public static void checkReadFieldsAccess(List<DescribeFieldResult> describeFieldResults) {
+		if (describeFieldResults != null && !describeFieldResults.isEmpty()) {
+			String errorMessage = '';
+			for (DescribeFieldResult field : describeFieldResults) {
+				if (!field.isAccessible()) {
+					errorMessage += (String.isNotBlank(errorMessage) ? ', ' : ' ') + field.getName();
+				}
+			}
+			if (String.isNotBlank(errorMessage)) {
 				NoAccessException accessException = new NoAccessException();
-				accessException.setMessage(Label.BT_MSG_Not_Allowed_Reading_Object + sObjectType.getName());
+				accessException.setMessage(Label.BT_MSG_Not_Allowed_Reading_Fields + errorMessage);
 				throw accessException;
 			}
 		}
 	}
 
-	public static void checkUpdateAccess(DescribeSObjectResult sObjectType) {
-		if (Test.isRunningTest() || (!sObjectType.isAccessible() || !sObjectType.isUpdateable())) {
-			if (!Test.isRunningTest() || (Test.isRunningTest() && isTestAccessLogic)) {
-				NoAccessException accessException = new NoAccessException();
-				accessException.setMessage(Label.BT_MSG_Not_Allowed_Update_Object + sObjectType.getName());
-				throw accessException;
+	public static void checkWriteFieldsAccess(List<DescribeFieldResult> describeFieldResults) {
+		if (describeFieldResults != null && !describeFieldResults.isEmpty()) {
+			String errorMessage = '';
+			for (DescribeFieldResult field : describeFieldResults) {
+				if (!field.isUpdateable()) {
+					errorMessage += (String.isNotBlank(errorMessage) ? ', ' : ' ') + field.getName();
+				}
 			}
-		}
-	}
-
-	public static void checkDeleteAccess(DescribeSObjectResult sObjectType) {
-		if (Test.isRunningTest() || (sObjectType.isAccessible() || !sObjectType.isDeletable())) {
-			if (!Test.isRunningTest() || (Test.isRunningTest() && isTestAccessLogic)) {
+			if (String.isNotBlank(errorMessage)) {
 				NoAccessException accessException = new NoAccessException();
-				accessException.setMessage(Label.BT_MSG_Not_Allowed_Delete_Object + sObjectType.getName());
+				accessException.setMessage(Label.BT_MSG_Not_Allowed_Writing_Fields + errorMessage);
 				throw accessException;
 			}
 		}

@@ -137,6 +137,14 @@
         <value>You do not have access to delete the object:</value>
     </labels>
     <labels>
+        <fullName>BT_MSG_Not_Allowed_Reading_Fields</fullName>
+        <categories>Business Trip</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message Not Allowed Reading Fields</shortDescription>
+        <value>You do not have read access to these fields:</value>
+    </labels>
+    <labels>
         <fullName>BT_MSG_Not_Allowed_Reading_Object</fullName>
         <categories>Business Trip</categories>
         <language>en_US</language>
@@ -151,6 +159,14 @@
         <protected>true</protected>
         <shortDescription>Message Not Allowed Update Object</shortDescription>
         <value>You do not have write access to the object:</value>
+    </labels>
+    <labels>
+        <fullName>BT_MSG_Not_Allowed_Writing_Fields</fullName>
+        <categories>Business Trip</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message Not Allowed Write Fields</shortDescription>
+        <value>You do not have write access to these fields:</value>
     </labels>
     <labels>
         <fullName>BT_MSG_Not_Support_Toast_Event</fullName>

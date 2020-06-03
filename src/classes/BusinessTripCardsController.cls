@@ -2,8 +2,16 @@ public with sharing class BusinessTripCardsController {
 
 	@AuraEnabled
 	public static List<Business_Trip__c> fetchBusinessTrips(List<String> searchStatuses, List<String> searchTypes) {
-		BusinessTripUtilities.checkReadAccess(SObjectType.Business_Trip__c);
-		BusinessTripUtilities.checkReadAccess(SObjectType.Ride__c);
+		BusinessTripUtilities.checkReadObjectAccess(SObjectType.Business_Trip__c);
+		BusinessTripUtilities.checkReadObjectAccess(SObjectType.Ride__c);
+		BusinessTripUtilities.checkReadFieldsAccess(new List<DescribeFieldResult> {
+			SObjectType.Business_Trip__c.fields.Target__c,
+			SObjectType.Ride__c.fields.Start_Time__c,
+			SObjectType.Ride__c.fields.End_Time__c,
+			SObjectType.Ride__c.fields.Status__c,
+			SObjectType.Ride__c.fields.Ticket_Number__c,
+			SObjectType.Ride__c.fields.Type_Of_Trip__c
+		});
 		Boolean isExistsStatuses = searchStatuses != null && !searchStatuses.isEmpty();
 		Boolean isExistsTypes = searchTypes != null && !searchTypes.isEmpty();
 		String query = '' +
@@ -26,8 +34,8 @@ public with sharing class BusinessTripCardsController {
 
 	@AuraEnabled
 	public static void deleteBusinessTripWithRides(Id businessTripId) {
-		BusinessTripUtilities.checkDeleteAccess(SObjectType.Business_Trip__c);
-		BusinessTripUtilities.checkDeleteAccess(SObjectType.Ride__c);
+		BusinessTripUtilities.checkDeleteObjectAccess(SObjectType.Business_Trip__c);
+		BusinessTripUtilities.checkDeleteObjectAccess(SObjectType.Ride__c);
 		List<Ride__c> rides = [ SELECT Id FROM Ride__c WHERE Business_Trip__c =: businessTripId ];
 		List<Business_Trip__c> businessTrips = [ SELECT Id FROM Business_Trip__c WHERE Id =: businessTripId ];
 		if (!rides.isEmpty()) {
